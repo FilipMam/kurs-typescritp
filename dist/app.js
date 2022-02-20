@@ -1,3 +1,4 @@
+import { Category } from "./types/types.js";
 import renderTasks from "./helpers/render-tasks.helper.js";
 import { render as renderCategories } from "./helpers/render-categories.helper.js";
 const taskNameInputElement = document.querySelector("#name");
@@ -5,22 +6,28 @@ const addButtonElement = document.querySelector("button");
 const tasksContainerElement = document.querySelector(".tasks");
 const categoriesContainerElement = document.querySelector(".categories");
 let selectedCategory;
-const categories = ["general", "work", "gym", "hobby"];
+const categories = [
+    Category.GENERAL,
+    Category.WORK,
+    Category.GYM,
+    Category.HOBBY,
+    Category.SOCIAL,
+];
 const tasks = [
     {
         name: "Wyrzucić śmieci",
         done: false,
-        category: "hobby",
+        category: Category.HOBBY,
     },
     {
         name: "Pójść na siłkę",
         done: true,
-        category: "gym",
+        category: Category.GYM,
     },
     {
         name: "Nakarmić koty",
         done: false,
-        category: "work",
+        category: Category.WORK,
     },
 ];
 const addTask = (task) => {
@@ -38,6 +45,6 @@ addButtonElement.addEventListener("click", (event) => {
     });
     renderTasks(tasks, tasksContainerElement);
 });
-addTask({ name: "zrobić klatę", category: "gym", done: false });
+addTask({ name: "zrobić klatę", category: Category.GYM, done: false });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
