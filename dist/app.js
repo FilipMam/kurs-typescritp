@@ -25,8 +25,8 @@ const tasks = [
         category: Category.GYM,
     },
     {
-        name: "Nakarmić koty",
         done: false,
+        name: "Nakarmić koty",
         category: Category.WORK,
     },
 ];
@@ -45,6 +45,10 @@ addButtonElement.addEventListener("click", (event) => {
     });
     renderTasks(tasks, tasksContainerElement);
 });
-addTask({ name: "zrobić klatę", category: Category.GYM, done: false });
+const task = ["zrobić klatkę", Category.GYM, false];
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];
+addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks, tasksContainerElement);
