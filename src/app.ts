@@ -19,21 +19,9 @@ const categories: Category[] = [
 ];
 
 const tasks: Task[] = [
-    {
-        name: "Wyrzucić śmieci",
-        done: false,
-        category: Category.HOBBY,
-    },
-    {
-        name: "Pójść na siłkę",
-        done: true,
-        category: Category.GYM,
-    },
-    {
-        done: false,
-        name: "Nakarmić koty",
-        category: Category.WORK,
-    },
+    new Task("Wyrzucić śmieci", false, Category.HOBBY),
+    new Task("Pójść na siłkę", true, Category.GYM),
+    new Task("Nakarmić koty", false),
 ];
 
 const addTask = (task: Task) => {
@@ -46,11 +34,13 @@ const updateSelectedCategory = (newCategory: Category) => {
 
 addButtonElement.addEventListener("click", (event: Event) => {
     event.preventDefault();
-    addTask({
-        name: taskNameInputElement.value,
-        done: false,
-        category: selectedCategory,
-    });
+    const newTask: Task = new Task(
+        taskNameInputElement.value,
+        false,
+        selectedCategory
+    );
+    addTask(newTask);
+    newTask.logCreationDate("!!!");
     renderTasks(tasks, tasksContainerElement);
 });
 
@@ -61,8 +51,6 @@ const task: TaskAsTuple = ["zrobić klatkę", Category.GYM, false];
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
-
-addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 
 renderCategories(
     categories,
